@@ -47,13 +47,13 @@ Or with a custom alternative suggestion:
 Sets the hint message.
 
 > type: `string`
-
+>
 > default: `"use float-safe alternatives"`
 
 ### `ignoreIteratorLike`
 
-When enabled, does _not_ error on operations that look like an increment / decrement, which just checks if the right-hand value of a binary operation is the literal value `1`.
+When enabled, does _not_ error on operations that look like an increment / decrement. We define this as the right-hand value of a binary `+` / `-` operation being the literal value `1`.
 
 > type: boolean
-
+>
 > default: `true`

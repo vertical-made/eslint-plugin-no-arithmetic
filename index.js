@@ -19,6 +19,7 @@ const noArithmeticRule = (context) => {
       // we're not concerned with increment/decrement math
       if (
         config.ignoreIteratorLike !== false &&
+        (node.operator === "+" || node.operator === "-") &&
         node.right.type === "Literal" &&
         node.right.value === 1
       ) {
