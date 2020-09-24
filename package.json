@@ -1,0 +1,9 @@
+{
+  "name": "eslint-plugin-no-arithmetic",
+  "version": "1.0.0",
+  "description": "Forbid arithmetic",
+  "main": "index.js",
+  "author": "FLGMwt",
+  "license": "MIT",
+  "private": false
+}
