@@ -4,9 +4,12 @@ const isNodeStringy = (node) =>
   node.type === "TemplateLiteral" ||
   (node.type === "Literal" && typeof node.value === "string");
 
+const defaultMessage = "use float-safe alternatives";
+
 const noArithmeticRule = (context) => {
   return {
     BinaryExpression: (node) => {
+      const config = context.options[0] || {};
       if (!operatorsOfConcern.includes(node.operator)) {
         return;
       }
@@ -14,14 +17,19 @@ const noArithmeticRule = (context) => {
         return;
       }
       // we're not concerned with increment/decrement math
-      if (node.right.type === "Literal" && node.right.value === 1) {
+      if (
+        config.ignoreIteratorLike !== false &&
+        node.right.type === "Literal" &&
+        node.right.value === 1
+      ) {
         return;
       }
 
+      let message = config.message || defaultMessage;
+
       context.report({
         node,
-        message:
-          "Do not use raw arithmetic. Instead, use the floatSafe helpers in `~/helpers/utilities`.",
+        message: `Do not use raw arithmetic. Instead, ${message}.`,
       });
     },
   };
