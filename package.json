@@ -1,9 +1,14 @@
 {
   "name": "@vertical-made/eslint-plugin-no-arithmetic",
   "version": "1.1.0",
-  "description": "Forbid arithmetic",
+  "description": "Forbid arithmetic and suggest float-safe alternatives.",
   "main": "index.js",
   "author": "@vertical-made",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "repository": "github:vertical-made/eslint-plugin-no-arithmetic",
+  "keywords": [
+    "eslint",
+    "eslint-plugin"
+  ]
 }
