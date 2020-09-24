@@ -13,6 +13,10 @@ const noArithmeticRule = (context) => {
       if (isNodeStringy(node.left) || isNodeStringy(node.right)) {
         return;
       }
+      // we're not concerned with increment/decrement math
+      if (node.right.type === "Literal" && node.right.value === 1) {
+        return;
+      }
 
       context.report({
         node,
