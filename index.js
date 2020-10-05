@@ -27,7 +27,19 @@ const noArithmeticRule = (context) => {
       }
 
       let message = config.message || defaultMessage;
-
+      context.report({
+        node,
+        message: `Do not use raw arithmetic. Instead, ${message}.`,
+      });
+    },
+    AssignmentExpression: (node) => {
+      if (!operatorsOfConcern.includes(node.operator.slice(0, -1))) {
+        return;
+      }
+      if (node.right.type === "Literal" && node.right.value === 1) {
+        return;
+      }
+      let message = config.message || defaultMessage;
       context.report({
         node,
         message: `Do not use raw arithmetic. Instead, ${message}.`,
