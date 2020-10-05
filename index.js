@@ -36,7 +36,12 @@ const noArithmeticRule = (context) => {
       if (!operatorsOfConcern.includes(node.operator.slice(0, -1))) {
         return;
       }
-      if (node.right.type === "Literal" && node.right.value === 1) {
+      if (
+        config.ignoreIteratorLike !== false &&
+        (node.operator === "+=" || node.operator === "-=") &&
+        node.right.type === "Literal" &&
+        node.right.value === 1
+      ) {
         return;
       }
       let message = config.message || defaultMessage;
