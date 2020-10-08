@@ -7,9 +7,9 @@ const isNodeStringy = (node) =>
 const defaultMessage = "use float-safe alternatives";
 
 const noArithmeticRule = (context) => {
+  const config = context.options[0] || {};
   return {
     BinaryExpression: (node) => {
-      const config = context.options[0] || {};
       if (!operatorsOfConcern.includes(node.operator)) {
         return;
       }
